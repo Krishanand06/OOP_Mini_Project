@@ -1,0 +1,41 @@
+# Compiled files
+*.class
+
+# Package files
+*.war
+*.ear
+
+# IDE files
+.vscode/
+.idea/
+*.iml
+.classpath
+.project
+.settings/
+
+# BlueJ files
+*.ctxt
+*.bluej
+package.bluej
+
+# Text files (temp/test data)
+*.txt
+
+# Receipts (generated at runtime)
+receipts/
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Backup files
+*~
+*.bak
+
+# Build directories
+bin/
+out/
+target/
