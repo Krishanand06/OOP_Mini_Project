@@ -4,18 +4,6 @@ A comprehensive Java Swing desktop application for managing campus café operati
 
 ---
 
-## 🚀 Quick Start
-
-**First time setup?** See **[SETUP.md](SETUP.md)** for complete installation instructions.
-
-**Already set up?** Just run:
-- Windows: Double-click `run.bat`
-- Linux/Mac: `./run.sh`
-
-**Default login:** `admin` / `admin123`
-
----
-
 ## Features
 
 - **Student Portal**
@@ -48,10 +36,6 @@ A comprehensive Java Swing desktop application for managing campus café operati
 ## Default Login Credentials
 
 After loading sample data:
-
-**Student**:
-- Roll No: `2023A7PS0001G`
-- Password: `password123`
 
 **Admin**:
 - Username: `admin`
@@ -86,18 +70,4 @@ After loading sample data:
 - Category-based feedback (Canteen, Mess, Events)
 - Rating system (1-5 stars)
 - Admin feedback dashboard
-
-## Troubleshooting
-
-### "MySQL JDBC driver not found"
-- Ensure `mysql-connector-j-8.0.33.jar` is in the project root
-- Check the classpath in compile/run commands
-
-### "Access denied for user"
-- Verify MySQL credentials in `DatabaseManager.java`
-- Ensure MySQL server is running
-
-### "Table doesn't exist"
-- Run `data/schema.sql` to create tables
-- Check database name is `campus_cafe`
 
