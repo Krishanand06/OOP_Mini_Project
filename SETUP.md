@@ -50,11 +50,6 @@ Replace `"your_mysql_password"` with your actual MySQL root password.
 
 **Windows:** Double-click `run.bat`
 
-**Linux/Mac:**
-```bash
-chmod +x run.sh
-./run.sh
-```
 
 **Manual:**
 ```bash
@@ -79,70 +74,4 @@ java -cp ".:mysql-connector-j-8.0.33.jar" Main
 
 ---
 
-## 🐛 Troubleshooting
 
-| Problem | Solution |
-|---------|----------|
-| "Driver not found" | Verify `mysql-connector-j-8.0.33.jar` exists in project root |
-| "Access denied" | Update password in `DatabaseManager.java` line 15 |
-| "Unknown database" | Run `data/schema.sql` first |
-| "Table doesn't exist" | Run both `schema.sql` and `sample_data.sql` |
-| MySQL not running | Start MySQL service |
-
-**Check MySQL is running:**
-```bash
-# Windows
-sc query MySQL80
-
-# Linux/Mac
-sudo systemctl status mysql
-```
-
-**Verify database:**
-```sql
-mysql -u root -p
-USE campus_cafe;
-SHOW TABLES;  -- Should show 14 tables
-```
-
----
-
-## 📦 What's Included
-
-- ✅ All Java source code
-- ✅ MySQL Connector JAR (no download needed!)
-- ✅ Database schema
-- ✅ Sample data (admin account, menu items, mess plans)
-- ✅ Run scripts for easy execution
-
----
-
-## 📚 Additional Info
-
-**Project Structure:**
-```
-OOP_Mini_Project-main/
-├── src/                          # Java source files
-├── data/
-│   ├── schema.sql                # Database structure
-│   └── sample_data.sql           # Initial data
-├── mysql-connector-j-8.0.33.jar  # JDBC driver (included)
-├── run.bat                       # Windows launcher
-└── README.md                     # Project overview
-```
-
-**License:** MySQL Connector is licensed under GPL v2.0 with FOSS Exception. See [LICENSE-THIRD-PARTY.md](LICENSE-THIRD-PARTY.md).
-
----
-
-## ✅ Success Checklist
-
-- [ ] Java JDK 8+ installed
-- [ ] MySQL Server 8.0+ installed and running
-- [ ] Database created (ran `schema.sql`)
-- [ ] Sample data loaded (ran `sample_data.sql`)
-- [ ] Password configured in `DatabaseManager.java`
-- [ ] Application runs without errors
-- [ ] Can login as admin
-
-**Need help?** Check the troubleshooting section above or review error messages in the console.
