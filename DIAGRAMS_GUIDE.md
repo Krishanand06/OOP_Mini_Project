@@ -405,4 +405,263 @@ Order "*" -- "*" MenuItem : contains
 
 ---
 
+## 8. Simple Text-Based Diagram Instructions
+
+### USE CASE DIAGRAM - What to Draw and Connect
+
+#### Elements to Draw:
+
+**Actors (Stick Figures - Outside the Box):**
+- Student (left side)
+- Admin (right side)
+- Canteen Staff (bottom)
+
+**System Boundary:**
+- Draw a large rectangle labeled "Campus Café Management System"
+
+**Use Cases (Ovals - Inside the Box):**
+
+**For Student:**
+1. Login
+2. Register Account
+3. View Menu
+4. Place Order
+5. Pay via Wallet
+6. Add Money to Wallet
+7. View Wallet Balance
+8. Subscribe to Mess Plan
+9. Request Catering
+10. Submit Feedback
+
+**For Admin:**
+11. Manage Menu
+12. View All Orders
+13. Manage Catering Requests
+14. View Feedback
+15. View Analytics
+
+**For Canteen Staff:**
+16. Update Order Status
+
+#### Connections (Lines):
+
+**Student connects to:**
+- Login (solid line)
+- Register Account (solid line)
+- View Menu (solid line)
+- Place Order (solid line)
+- Add Money to Wallet (solid line)
+- View Wallet Balance (solid line)
+- Subscribe to Mess Plan (solid line)
+- Request Catering (solid line)
+- Submit Feedback (solid line)
+
+**Admin connects to:**
+- Login (solid line)
+- Manage Menu (solid line)
+- View All Orders (solid line)
+- Manage Catering Requests (solid line)
+- View Feedback (solid line)
+- View Analytics (solid line)
+
+**Canteen Staff connects to:**
+- Login (solid line)
+- Update Order Status (solid line)
+
+**Special Relationships (Dashed arrows with <<include>>):**
+- "Place Order" → "Pay via Wallet" (dashed arrow with <<include>>)
+- "Subscribe to Mess Plan" → "Pay via Wallet" (dashed arrow with <<include>>)
+
+---
+
+### CLASS DIAGRAM - What to Draw and Connect
+
+#### Main Classes to Draw (Rectangles with 3 sections):
+
+**1. User (Abstract - italicize name)**
+```
+┌─────────────────┐
+│      User       │ (abstract)
+├─────────────────┤
+│ - userId        │
+│ - name          │
+│ - email         │
+├─────────────────┤
+│ + getUserId()   │
+│ + getName()     │
+└─────────────────┘
+```
+
+**2. Student (Abstract - italicize name)**
+```
+┌─────────────────┐
+│    Student      │ (abstract)
+├─────────────────┤
+│ - rollNo        │
+│ - hostelStatus  │
+├─────────────────┤
+│ + getRollNo()   │
+└─────────────────┘
+```
+
+**3. Hosteller**
+```
+┌─────────────────┐
+│   Hosteller     │
+├─────────────────┤
+│ - messplan      │
+├─────────────────┤
+│ + subscribeTo() │
+└─────────────────┘
+```
+
+**4. DayScholar**
+```
+┌─────────────────┐
+│   DayScholar    │
+├─────────────────┤
+│                 │
+├─────────────────┤
+│                 │
+└─────────────────┘
+```
+
+**5. Admin**
+```
+┌─────────────────┐
+│     Admin       │
+├─────────────────┤
+│                 │
+├─────────────────┤
+│ + manageMenu()  │
+└─────────────────┘
+```
+
+**6. Wallet**
+```
+┌─────────────────┐
+│     Wallet      │
+├─────────────────┤
+│ - ownerId       │
+│ - balance       │
+├─────────────────┤
+│ + addMoney()    │
+│ + deductMoney() │
+└─────────────────┘
+```
+
+**7. Order**
+```
+┌─────────────────┐
+│     Order       │
+├─────────────────┤
+│ - orderId       │
+│ - customer      │
+│ - items         │
+│ - status        │
+├─────────────────┤
+│ + addItem()     │
+│ + calculate()   │
+└─────────────────┘
+```
+
+**8. MenuItem**
+```
+┌─────────────────┐
+│   MenuItem      │
+├─────────────────┤
+│ - itemId        │
+│ - itemName      │
+│ - price         │
+│ - category      │
+├─────────────────┤
+│ + getPrice()    │
+└─────────────────┘
+```
+
+**9. MealPlan (Interface)**
+```
+┌─────────────────┐
+│  <<interface>>  │
+│    MealPlan     │
+├─────────────────┤
+│ + getCost()     │
+│ + getDetails()  │
+└─────────────────┘
+```
+
+**10. BasicPlan, PremiumPlan, WeekendPlan**
+```
+┌─────────────┐  ┌──────────────┐  ┌──────────────┐
+│ BasicPlan   │  │ PremiumPlan  │  │ WeekendPlan  │
+└─────────────┘  └──────────────┘  └──────────────┘
+```
+
+**11. Feedback**
+```
+┌─────────────────┐
+│   Feedback      │
+├─────────────────┤
+│ - feedbackId    │
+│ - studentId     │
+│ - rating        │
+│ - comments      │
+├─────────────────┤
+│ + getRating()   │
+└─────────────────┘
+```
+
+#### Connections (Relationships):
+
+**INHERITANCE (Hollow arrow pointing to parent):**
+1. Student → User (hollow arrow from Student to User)
+2. Hosteller → Student (hollow arrow from Hosteller to Student)
+3. DayScholar → Student (hollow arrow from DayScholar to Student)
+4. Admin → User (hollow arrow from Admin to User)
+5. BasicPlan → MealPlan (dashed hollow arrow)
+6. PremiumPlan → MealPlan (dashed hollow arrow)
+7. WeekendPlan → MealPlan (dashed hollow arrow)
+
+**COMPOSITION (Filled diamond on owner side):**
+1. Student ◆——— Wallet (filled diamond on Student side, line to Wallet)
+   - Label: "1" near Student, "1" near Wallet
+
+**ASSOCIATION (Simple line):**
+1. Student ——— Order (line between them)
+   - Label: "1" near Student, "*" near Order
+   - Label on line: "places"
+
+2. Student ——— Feedback (line between them)
+   - Label: "1" near Student, "*" near Feedback
+   - Label on line: "submits"
+
+3. Order ——— MenuItem (line between them)
+   - Label: "*" near Order, "*" near MenuItem
+   - Label on line: "contains"
+
+4. Hosteller ——— MealPlan (line between them)
+   - Label: "1" near Hosteller, "1" near MealPlan
+   - Label on line: "subscribes to"
+
+---
+
+### Quick Drawing Steps:
+
+#### For Use Case Diagram:
+1. Draw big rectangle (system boundary)
+2. Put 3 stick figures outside (Student left, Admin right, Staff bottom)
+3. Draw ovals inside for each use case
+4. Connect actors to their use cases with straight lines
+5. Add dashed arrows for <<include>> relationships
+
+#### For Class Diagram:
+1. Draw all class boxes (rectangles with 3 sections)
+2. Arrange: User at top, Student below, Hosteller/DayScholar below Student
+3. Draw hollow arrows for inheritance (pointing upward)
+4. Draw filled diamond + line for Student-Wallet composition
+5. Draw simple lines for associations (Student-Order, Student-Feedback, etc.)
+6. Add multiplicity numbers (1, *, etc.) near the lines
+
+---
+
 Good luck with your diagrams! 🎨
